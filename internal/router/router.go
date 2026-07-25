@@ -3,16 +3,17 @@ package router
 import (
 	"net/http"
 
+	"github.com/Vophat289/go-commerce-system/internal/controller"
 	"github.com/gin-gonic/gin"
 )
 
-func NewRouter() *gin.Engine{
+func NewRouter() *gin.Engine {
 	r := gin.Default()
 
 	v1 := r.Group("/v1/2026")
 	{
 		v1.GET("/ping", Pong) // /v1/2026/ping
-		v1.PUT("/ping", Pong)
+		v1.GET("/user/1", controller.NewUserController().GetUsersByID)
 		v1.PATCH("/ping", Pong)
 		v1.DELETE("/ping", Pong)
 		v1.HEAD("/ping", Pong)
@@ -30,18 +31,17 @@ func NewRouter() *gin.Engine{
 	}
 
 	return r
-};
+}
 
-func Pong(c *gin.Context){
+func Pong(c *gin.Context) {
 	name := c.DefaultQuery("name", "bin")
 
-	// c.ShouldBlindJSON()
+	// c.ShouldBindJSON()
 
 	uid := c.Query("uid")
-	c.JSON(http.StatusOK, gin.H{ //map string
+	c.JSON(http.StatusOK, gin.H{ // map string
 		"message": "pong.hhh.ping" + name,
-		"uid" : uid,
-		"users" : []string{"haaland", "messi", "foden"},
-		
+		"uid":     uid,
+		"users":   []string{"haaland", "messi", "foden"},
 	})
 }
