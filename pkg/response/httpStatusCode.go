@@ -1,4 +1,4 @@
-package respone
+package response
 
 const (
 	ErrCodeSucccess = 20001 //Success

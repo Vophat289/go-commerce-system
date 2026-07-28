@@ -1,8 +1,6 @@
 package controller
 
 import (
-	"net/http"
-
 	"github.com/Vophat289/go-commerce-system/internal/service"
 	"github.com/Vophat289/go-commerce-system/pkg/response"
 	"github.com/gin-gonic/gin"
@@ -22,9 +20,10 @@ func NewUserController() *UserController {
 // us -> user service
 // controller -> service -> repo -> models -> dbs
 func (uc *UserController) GetUsersByID(c *gin.Context) {
-	c.JSON(http.StatusOK, response.ResponseData{
-		Code: 20001,
-		Message: "success",
-		Data: []string{"bin", "angular", "foden"},
-	})
+
+	if err != nil{
+		response.ErrorRes(c, 20003, "No need !!!")
+	}
+	return response.SuccessRes(c, 20001, []string{"bin", "foden", "angular"})
+
 }
