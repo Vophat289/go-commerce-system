@@ -19,11 +19,10 @@ func NewUserController() *UserController {
 // uc -> user controller
 // us -> user service
 // controller -> service -> repo -> models -> dbs
+
 func (uc *UserController) GetUsersByID(c *gin.Context) {
-
-	if err != nil{
-		response.ErrorRes(c, 20003, "No need !!!")
-	}
-	return response.SuccessRes(c, 20001, []string{"bin", "foden", "angular"})
-
+    // Gọi service lấy data
+    result := uc.userService.GetInfoUser()
+    
+    response.SuccessRes(c, 20001, result)
 }
