@@ -1,0 +1,35 @@
+# ========================
+# Private / Secret configs
+# ========================
+configs/production.yaml
+*.env
+.env
+.env.*
+
+# ========================
+# Private folders
+# ========================
+docs/
+
+# ========================
+# Go build output
+# ========================
+*.exe
+*.out
+bin/
+dist/
+
+# ========================
+# Log files
+# ========================
+log/
+*.log
+
+# ========================
+# OS & Editor
+# ========================
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
