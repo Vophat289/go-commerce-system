@@ -6,6 +6,17 @@ import (
 	"github.com/spf13/viper"
 )
 
+type Config struct{
+	Server struct {
+		Port int `mapstructure:"port"`
+	}`mapstructure:"server"`	
+	Database []struct{
+		User string `mapstruct:"user"`
+		Password string `mapstruct:"password"`
+		Host string `mapstruct:"host"`
+	}`mapstructure:"databases"`
+}
+
 func main() {
 	viper := viper.New()
 	viper.AddConfigPath("./config/") //path to config
@@ -20,5 +31,14 @@ func main() {
 	//write server config
 	fmt.Println("Server Port::", viper.GetInt("server.port"))
 	fmt.Println("Security Key Port::", viper.GetString("security.jwt.key"))
+
+	//config struct
+	var config Config
+	if err := viper.Unmarshal(&config); err != nil {
+		fmt.Printf("Unable to decode config %v", err)
+	}
+
+	fmt.Println("Config Port::", config.Server.port)
+	
 
 }
