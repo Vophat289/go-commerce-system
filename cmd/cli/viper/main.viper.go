@@ -38,7 +38,10 @@ func main() {
 		fmt.Printf("Unable to decode config %v", err)
 	}
 
-	fmt.Println("Config Port::", config.Server.port)
+	fmt.Println("Config Port::", config.Server.Port)
 	
+	for _, db := range config.Databases{
+		fmt.Printf("database User: %s, password: %s, Host: %s  \n", db.User, db.Password, db.Host)
+	}
 
 }
